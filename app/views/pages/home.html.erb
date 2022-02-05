@@ -1,2 +1,18 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <div data-controller="refresh-list">
+        <%= form_with url: cities_path, method: :get, html: { class: 'mb-5', data: { refresh_list_target: 'form' } } do |f| %>
+          <%= f.text_field :query,
+                           class: "form-control",
+                           placeholder: 'Digite um cidade/estado',
+                           value: params[:query],
+                           data: {
+                             refresh_list_target: 'searchInput',
+                             action: "keyup->refresh-list#update"
+                           } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
