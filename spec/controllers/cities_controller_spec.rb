@@ -3,9 +3,10 @@ require 'rails_helper'
 class CitiesControllerTest < ActionDispatch::IntegrationTest
   RSpec.describe CitiesController, type: :controller do
     describe 'GET index' do
-      it 'renders the index template' do
-        get :index
-        expect().to route_to cities_path
+      it 'has a 200 status code' do
+        city = ['Porto Alegre', 'Caxias', 'Gramado', 'Florianopolis', 'Joinville', 'Blumenau', 'Curitiba', 'Maringa', 'Cascavel']
+        get :index, params: { query: city.sample }
+        expect(city).to match_array(['Porto Alegre', 'Caxias', 'Gramado', 'Florianopolis', 'Joinville', 'Blumenau', 'Curitiba', 'Maringa', 'Cascavel'])
       end
 
       it 'renders the answer correct' do
